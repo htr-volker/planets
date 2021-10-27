@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Planets & Moons</title>
+    </head>
+    <body>
+        <h1>Planets & Moons</h1>
+
+        {% for planet in planets %}
+        <table>
+            <h2>{{ planet["name"] }}</h2>
+            <tr>
+                <td><b>Mass</b></td>
+                <td>{{ planet["mass"] }}</td> 
+            </tr>
+            <tr>
+                <td><b>Type</b></td>
+                <td>{{ planet["type"] }}</td> 
+            </tr>
+            <tr>
+                <td><b>Star System</b></td>
+                <td>{{ planet["star_system"] }}</td> 
+            </tr>
+        </table>
+        
+        <h3>Moons of {{ planet["name"] }}</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Mass</th>
+            </tr>
+            {% for moon in planet["moons"] %}
+            <tr>
+                <td>{{ moon["name"] }}</td> 
+                <td>{{ moon["mass"] }}</td> 
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% endfor %}
+    </body>
+</html>

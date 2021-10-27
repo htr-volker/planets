@@ -4,6 +4,9 @@ services:
     container_name: frontend
     build: frontend
     image: htrvolker/planets-frontend:latest
+    ports:
+    - target: 80
+      published: 81
   backend:
     container_name: backend
     build: backend

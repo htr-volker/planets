@@ -39,13 +39,39 @@ def get_all_planets():
     all_planets = Planet.query.all()
     json = {"planets": []}
     for planet in all_planets:
+        moons = []
+        for moon in planet.moons:
+            moons.append(
+                {
+                    "id": moon.id,
+                    "name": moon.name,
+                    "planet_id": moon.planet_id,
+                    "mass": moon.mass
+                }
+            )
         json["planets"].append(
             {
                 "id": planet.id,
                 "name": planet.name,
                 "mass": planet.mass,
                 "type": planet.type,
-                "star_system": planet.star_system
+                "star_system": planet.star_system,
+                "moons": moons
+            }
+        )
+    return jsonify(json)
+
+@app.route('/get/allMoons', methods=["GET"])
+def get_all_moons():
+    all_moons = Planet.query.all()
+    json = {"moons": []}
+    for moon in all_moons:
+        json["moons"].append(
+            {
+                "id": moon.id,
+                "name": moon.name,
+                "planet_id": moon.planet_id,
+                "mass": moon.mass
             }
         )
     return jsonify(json)
