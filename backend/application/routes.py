@@ -1,22 +1,15 @@
 from application import app, db
 from application.models import Planet, Moon
 from flask import request, jsonify
-from os import getenv
-
-print(f"CREATE_SCHEMA = {getenv('CREATE_SCHEMA')}")
-if getenv("CREATE_SCHEMA").lower() == "true":
-    print("Creating table schema")
-    db.drop_all()
-    db.create_all()
 
 @app.route('/create/planet', methods=["POST"])
 def create_planet():
-    data = request.json
+    json = request.json
     new_planet = Planet(
-        name = data["name"],
-        mass = data["mass"],
-        type = data["type"],
-        star_system = data["star_system"]
+        name = json["name"],
+        mass = json["mass"],
+        type = json["type"],
+        star_system = json["star_system"]
     )
     db.session.add(new_planet)
     db.session.commit()
@@ -24,11 +17,11 @@ def create_planet():
 
 @app.route('/create/moon/<int:planet_id>', methods=["POST"])
 def create_moon(planet_id):
-    data = request.json
+    json = request.json
     new_moon = Moon(
-        name = data["name"],
+        name = json["name"],
         planet_id = planet_id,
-        mass = data["mass"]
+        mass = json["mass"]
     )
     db.session.add(new_moon)
     db.session.commit()
@@ -104,7 +97,7 @@ def get_moons(id):
         )
     return jsonify(json)
 
-@app.route('/update/planet/<int:id>', methods=["POST"])
+@app.route('/update/planet/<int:id>', methods=["PUT"])
 def update_planet(id):
     data = request.json
     planet = Planet.query.get(id)
