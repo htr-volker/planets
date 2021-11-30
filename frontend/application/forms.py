@@ -15,3 +15,9 @@ class CreatePlanetForm(FlaskForm):
     )
     star_system = StringField('Star System Name', validators=[DataRequired()])
     submit = SubmitField('Add Planet')
+
+class CreateMoonForm(FlaskForm):
+    name = StringField('Moon Name', validators=[DataRequired()])
+    mass = IntegerField('Moon Mass', validators=[DataRequired()])
+    planet = SelectField('Planet', validators=[DataRequired()], choices=[])
+    submit = SubmitField('Add Planet')

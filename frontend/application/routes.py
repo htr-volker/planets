@@ -1,5 +1,5 @@
 from application import app
-from application.forms import CreatePlanetForm
+from application.forms import CreatePlanetForm, CreateMoonForm
 from flask import render_template, request, redirect, url_for
 import requests
 from os import getenv
@@ -30,6 +30,26 @@ def create_planet():
 
     return render_template("create_planet.html", title="Add Planet", form=form)
 
-@app.route('/create/moon')
+@app.route('/create/moon', methods=["GET", "POST"])
 def create_moon():
-    return redirect(url_for('home'))
+    form = CreateMoonForm()
+    
+    json = requests.get(f"http://{backend}/get/allPlanets").json()
+    planets = json["planets"]
+    for planet in planets:
+        form.planet.choices.append((planet["id"], planet["name"]))
+
+    if request.method == "POST":
+        response = requests.post(
+            f"http://{backend}/create/moon/{form.planet.data}",
+            json={
+                "name": form.name.data,
+                "mass": form.mass.data,
+                "planet_id": form.planet.data
+            }
+        )
+        app.logger.info(f"Response: {response.text}")
+        return redirect(url_for("home"))
+
+    return render_template("create_moon.html", title="Add Planet", form=form)
+
