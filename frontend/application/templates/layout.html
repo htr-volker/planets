@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Planets & Moons</title>
+    </head>
+    <body>
+        <h1>Planets & Moons – {{ title }}</h1>
+        <a href="{{ url_for('create_planet') }}">Add Planet</a>
+        <a href="{{ url_for('create_moon') }}">Add Moon</a>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

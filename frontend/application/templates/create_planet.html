@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<form method="POST">
+    <table>
+        <tr>
+            <td>{{ form.name.label }}</td>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.mass.label }}</td>
+            <td>{{ form.mass }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.type.label }}</td>
+            <td>{{ form.type }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.star_system.label }}</td>
+            <td>{{ form.star_system }}</td>
+        </tr>
+    </table>
+    {{ form.submit }}
+    {{ form.hidden_tag() }}
+</form>
+
+{% endblock body %}
