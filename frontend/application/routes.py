@@ -51,5 +51,5 @@ def create_moon():
         app.logger.info(f"Response: {response.text}")
         return redirect(url_for("home"))
 
-    return render_template("create_moon.html", title="Add Planet", form=form)
+    return render_template("create_moon.html", title="Add Moon", form=form)
 
