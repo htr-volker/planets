@@ -6,7 +6,7 @@ services:
     image: htrvolker/planets-frontend:latest
     ports:
     - target: 80
-      published: 81
+      published: 80
     environment:
       BACKEND_HOSTNAME: planet_backend
   
@@ -16,7 +16,7 @@ services:
     image: htrvolker/planets-backend:latest
     ports:
     - target: 80
-      published: 8080
+      published: 5000
     environment:
       DATABASE_URI:
       CREATE_SCHEMA:
