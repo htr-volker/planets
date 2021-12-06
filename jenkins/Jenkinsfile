@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        CREATE_SCHEMA = "true"
+    }
     stages {
         stage('Setup') {
             sh 'jenkins/scripts/setup.sh'
