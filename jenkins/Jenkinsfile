@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     environment {
         CREATE_SCHEMA = "true"
         DATABASE_URI = "sqlite:///"
