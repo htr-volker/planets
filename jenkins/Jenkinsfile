@@ -1,6 +1,7 @@
 pipeline {
     environment {
         CREATE_SCHEMA = "true"
+        DATABASE_URI = "sqlite:///"
     }
     stages {
         stage('Setup') {
