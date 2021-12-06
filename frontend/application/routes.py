@@ -52,4 +52,3 @@ def create_moon():
         return redirect(url_for("home"))
 
     return render_template("create_moon.html", title="Add Moon", form=form)
-
