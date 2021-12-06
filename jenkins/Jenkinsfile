@@ -1,0 +1,10 @@
+pipeline {
+    stages {
+        stage('Setup') {
+            sh 'jenkins/scripts/setup.sh'
+        }
+        stage('Test') {
+            sh 'jenkins/scripts/test.sh'
+        }
+    }
+}
